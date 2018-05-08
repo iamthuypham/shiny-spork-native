@@ -6,20 +6,22 @@ import { Platform, StatusBar, StyleSheet, View, Text, Menu } from 'react-native'
 // // Components
 // import Note from './Note';
 
-// const styles = {
-//   root: {
-//     width: '30%',
-//     padding: '1rem 1rem',
-//     backgroundColor: '#f2f2f2',
-//   },
-// }
+const styles = {
+  root: {
+    display:'flex',
+    alignItems: 'stretch',
+    flex: 1,
+    marginTop: (Platform.OS === 'android') ? StatusBar.currentHeight : 24,
+    backgroundColor: '#f2f2f2'
+  },
+}
 
 class NoteContainer extends Component {
   render() {
-    const { notes, handleSelect, handleDelete, classes } = this.props;
+    // const { notes, handleSelect, handleDelete, classes } = this.props;
     return (
-      <View>
-        
+      <View style={styles.root}>
+        <Text>Hello</Text>
       </View>
       // <div className={classes.root}>
       // {notes.map(note => (

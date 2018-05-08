@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Platform, StatusBar, StyleSheet, View, Text } from 'react-native';
 import SideMenu from 'react-native-side-menu';
-import { Button, Icon } from 'react-native-elements';
+import { Icon } from 'react-native-elements';
 // import Icon from 'react-native-vector-icons'; 
 
 // import { Link } from 'react-router-dom';
@@ -20,53 +20,42 @@ import NoteContainer from '../notecontainer/NoteContainer';
 // import faHome from '@fortawesome/fontawesome-free-solid/faHome';
 
 const styles = StyleSheet.create({
-  root: {
+  main: {
     flex: 1,
     width: '100%',
     marginTop: (Platform.OS === 'android') ? StatusBar.currentHeight : 24,
+    backgroundColor: 'white'
   }, 
   noteContent: {
     flex: 10,
   },
   toolBar: {
     flex: 1,
-    backgroundColor: 'red',
     flexDirection: 'row',
-    // justifyContent: 'flex-start',
-    // alignItems: 'center',
-    // padding: '1rem 0',
-    // boxShadow: '1px 0 2px #e2e2e2',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingRight: 10,
+    paddingLeft: 10,
   },
-  iconPrimary: {
-    backgroundColor: '#2ebd60',
-    // color: 'white',
-    // borderRadius: '50%',
-    // display: 'flex',
-    // flexDirection: 'column',
-    // justifyContent: 'center',
-    // alignItems: 'center',
-    // marginBottom: '0.5rem'
-  },
-  iconSecondary: {
-    // display: 'flex',
-    // flexDirection: 'column',
-    // justifyContent: 'center',
-    // alignItems: 'center',
-    // marginBottom: '0.5rem'
-  }
 })
 
 class Demo extends Component {
-  // constructor(props) {
-  //   super(props);
-  //   this.state = {
-  //     notes: [],
+  constructor(props) {
+    super(props);
+    this.state = {
+      isSideMenuOpen: false,
+      // notes: [],
   //     _id: null,
   //     note_title: Plain.deserialize('Note title'),
   //     note_content: Plain.deserialize('Note Content')
-  //   }
+    }
   //   this.createNote = this.createNote.bind(this)
-  // }
+  }
+  openSideMenu = () =>{
+    this.setState({
+      isSideMenuOpen: true
+    })
+  }
 
   // componentDidMount() {
   //   this.getNotes()
@@ -164,27 +153,41 @@ class Demo extends Component {
   //   })
   // }
   render() {
-    // let { notes, _id, note_title, note_content } = this.state;
+    let { 
+      isSideMenuOpen,
+      // notes, _id, note_title, note_content 
+    } = this.state;
     // const { classes } = this.props;
     return (
       <SideMenu menu={<NoteContainer 
         // notes={notes} handleSelect={this.handleSelect} handleDelete={this.handleDelete}
-      />}>
-        <View style={styles.root}>
-          {/* <View style={styles.noteContent}/> */}
+      />} isOpen={isSideMenuOpen}>
+        <View style={styles.main}>
+          <View style={styles.noteContent}/>
           {/* <NoteContent title={note_title} content={note_content} handleChange={this.handleChange} handleSave={this.handleSave.bind(this, _id)}/> */} */}
-          <Button                
-              leftIcon={{
-                name:'arrow-back',
-                size: 50,
-                color: 'red'
-              }}
+          
+          <View style={styles.toolBar}>
+            <Icon
+                name='list-alt'
+                type='font-awesome'
+                color='#c9c9c9'
+                size={23}
+                onPress={() => this.openSideMenu()}
             />
-          {/* <View style={styles.toolBar}>
-            <View style={styles.iconPrimary}>
-            
-            </View>
-          </View> */}
+            <Icon
+                name='plus'
+                type='font-awesome'
+                color='#2ebd60'
+                reverse
+                size={30}
+            />
+            <Icon
+                name='trash-o'
+                type='font-awesome'
+                color='#c9c9c9'
+                size={25}
+            />
+          </View>
         </View>
       </SideMenu>
     );
