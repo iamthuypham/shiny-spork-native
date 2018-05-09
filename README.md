@@ -1,6 +1,6 @@
-#### NOTE TAKING APP
+# NOTE TAKING APP
 
-This is mobile-version app. Check out (the web-version app)[https://github.com/bbenefield89/shiny-spork].
+This is mobile-version app. Check out [the web-version app](https://github.com/bbenefield89/shiny-spork).
 
 ## Feature
 - Taking and styling note
